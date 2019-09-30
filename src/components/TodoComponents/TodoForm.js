@@ -1,19 +1,22 @@
 import React from 'react'
+import {Form, Input, Button} from 'reactstrap'
 
 class TodoForm extends React.Component {
     render() {
         return (
-            <form onSubmit={this.props.submitHandler}>
-                <input
+            <Form onSubmit={this.props.submitHandler}>
+                <Input
                     type="text"
                     name="input"
                     placeholder="Task"
                     value={this.props.input}
                     onChange={this.props.changeHandler}
                 />
-                <button type="submit">Add Todo</button>
-                <button onClick={this.props.clearCompleted}>Clear Completed</button>
-            </form>
+                <div className="d-flex justify-content-between mt-3">
+                    <Button className="btn-success" type="submit">Add Todo</Button>
+                    <Button className="btn-danger" onClick={this.props.clearCompleted}>Clear Completed</Button>
+                </div>
+            </Form>
         )
     }
 }

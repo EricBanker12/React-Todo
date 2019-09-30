@@ -1,4 +1,6 @@
 import React from 'react';
+import {Container, Row} from 'reactstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Search from './components/TodoComponents/Search'
 import TodoForm from './components/TodoComponents/TodoForm'
@@ -82,20 +84,24 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-        <Search search={this.state.search} handler={this.changeHandler} />
-        <TodoList
-          {...this.state}
-          handler={this.toggleCompleted}
-        />
-        <TodoForm
-          input={this.state.input}
-          changeHandler={this.changeHandler}
-          submitHandler={this.submitHandler}
-          clearCompleted={this.clearCompleted}
-        />
-      </div>
+      <Container>
+        <Row>
+          <div className="col-sm-6 mx-auto">
+            <h2 className="text-center">Welcome to your Todo App!</h2>
+            <Search search={this.state.search} handler={this.changeHandler} />
+            <TodoList
+              {...this.state}
+              handler={this.toggleCompleted}
+            />
+            <TodoForm
+              input={this.state.input}
+              changeHandler={this.changeHandler}
+              submitHandler={this.submitHandler}
+              clearCompleted={this.clearCompleted}
+            />
+          </div>
+        </Row>
+      </Container>
     );
   }
 }
