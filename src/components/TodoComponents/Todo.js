@@ -8,7 +8,7 @@ class Todo extends React.Component {
             <li
                 className={this.props.completed?'completed text-danger':''}
                 onClick={()=>{this.props.handler(this.props.id)}}
-                hidden={this.props.task.includes(this.props.search)?false:true}
+                hidden={RegExp(this.props.search,'i').test(this.props.task)?false:true}
             >
                 {this.props.task}
             </li>
