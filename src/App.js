@@ -46,7 +46,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm
-          state={this.state}
+          input={this.state.input}
           changeHandler={this.changeHandler}
           submitHandler={this.submitHandler}
           clearCompleted={this.clearCompleted}
