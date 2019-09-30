@@ -6,6 +6,8 @@ class TodoForm extends React.Component {
             <form onSubmit={this.props.submitHandler}>
                 <input
                     type="text"
+                    name="input"
+                    placeholder="Task"
                     value={this.props.input}
                     onChange={this.props.changeHandler}
                 />

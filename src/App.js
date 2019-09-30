@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Search from './components/TodoComponents/Search'
 import TodoForm from './components/TodoComponents/TodoForm'
 import TodoList from './components/TodoComponents/TodoList'
 
@@ -12,6 +13,7 @@ class App extends React.Component {
     this.state = {
       todos: [],
       input: '',
+      search: '',
     }
   }
 
@@ -35,13 +37,14 @@ class App extends React.Component {
   changeHandler = e => {
     this.setState({
       ...this.state,
-      input: e.target.value,
+      [e.target.name]: e.target.value,
     })
   }
 
   submitHandler = e => {
     e.preventDefault()
     this.setState({
+      ...this.state,
       todos: [
         ...this.state.todos,
         {
@@ -81,8 +84,9 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <Search search={this.state.search} handler={this.changeHandler} />
         <TodoList
-          todos={this.state.todos}
+          {...this.state}
           handler={this.toggleCompleted}
         />
         <TodoForm
