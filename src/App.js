@@ -15,6 +15,23 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const todos = localStorage.getItem('todos')
+    if (todos) {
+      this.setState({
+        ...this.state,
+        todos: JSON.parse(todos)
+      })
+    }
+  }
+
+  componentDidUpdate(preProps, preState) {
+    if (this.state.todos !== preState.todos) {
+      console.log('update storage')
+      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+    }
+  }
+
   changeHandler = e => {
     this.setState({
       ...this.state,
