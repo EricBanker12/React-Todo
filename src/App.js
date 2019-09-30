@@ -1,5 +1,7 @@
 import React from 'react';
 
+import TodoForm from './components/TodoComponents/TodoForm'
+
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -8,13 +10,47 @@ class App extends React.Component {
     super()
     this.state = {
       todos: [],
+      input: '',
     }
+  }
+
+  changeHandler = e => {
+    this.setState({
+      ...this.state,
+      input: e.target.value,
+    })
+  }
+
+  submitHandler = e => {
+    e.preventDefault()
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          task: this.state.input,
+          id: Date.now(),
+          completed: false,
+        },
+      ],
+      input: '',
+    })
+  }
+
+  clearCompleted = e => {
+    e.preventDefault()
+    // todo
   }
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <TodoForm
+          state={this.state}
+          changeHandler={this.changeHandler}
+          submitHandler={this.submitHandler}
+          clearCompleted={this.clearCompleted}
+        />
       </div>
     );
   }
